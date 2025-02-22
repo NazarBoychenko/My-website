@@ -1,0 +1,523 @@
+:root {
+  font-family: "Castoro", serif;
+  font-style: normal;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+
+  color-scheme: light;
+  color: #000;
+  background-color: #D9D9D9;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --main-color: #000000;
+  --main-color-page: #D9D9D9;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Pirata One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+#swapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.lock{
+  overflow: hidden;
+}
+
+.close{
+  transform: scaleX(0);
+}
+
+.open{
+  transform: scaleX(1);
+}
+
+.header {
+  align-items: center;
+
+  .main_title {
+    font-size: 128px;
+    margin-block: 10px 40px;
+
+    @media (max-width: 900px){
+      font-size: 75px;
+    }
+
+    @media (max-width: 530px){
+      font-size: 35px;
+    }
+  }
+
+  .menu{
+    border-block: 3px solid var(--main-color);
+    display: flex;
+    justify-content: center;
+    padding-block: 15px;
+
+    .list{
+      display: flex;
+      align-items: center;
+
+      .item:not(:first-child)::before{
+        content: "";
+        display: inline-block;
+        background-image: url("../img/circle.svg");
+        background-size: 5px 5px;
+        background-repeat: no-repeat;
+        width: 5px;
+        height: 5px;
+        margin-inline: 40px;
+        margin-top: -5px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+
+        .link{
+          font-family: "Castoro Titling", serif;
+          font-size: 22px;
+          position: relative;
+        }
+
+        .link:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: var(--main-color);
+          transform: translateX(-50%);
+          transition: width 0.5s ease;
+        }
+        .link:hover::after{
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  #menu_burger{
+    display: none;
+    position: relative;
+    margin-block: 10px 40px;
+    z-index: 25;
+
+    #close_book, #open_book{
+      width: 100%;
+      position: absolute;
+      margin-left: -50%;
+    }
+
+    #close_book{
+      transition: transform 0.1s linear;
+    }
+
+    #open_book{
+      transition: transform 0.3s linear;
+    }
+  }
+
+  @media (max-width: 900px){
+    display: flex;
+    justify-content: space-between;
+
+    .menu{
+      width: 100%;
+      height: 100%;
+      background-color: #D9D9D9;
+      border-block: none;
+      align-items: center;
+      padding-block: 0;
+      overflow-y: auto;
+      transition: all 0.3s linear 0s;
+      position: fixed;
+      top: -100%;
+      left: 0;
+      z-index: 20;
+
+      .list{
+        display: block;
+        width: auto;
+        height: auto;
+
+        .item:not(:first-child)::before{
+          display: none;
+        }
+
+        .item:not(:last-child){
+          margin-bottom: 50px;
+        }
+
+        .item {
+          justify-content: center;
+
+          .link{
+            font-size: 30px;
+          }
+
+          .link:after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .show{
+      top: 0;
+    }
+
+    #menu_burger{
+      display: block;
+      width: 40px;
+      aspect-ratio: 1;
+    }
+
+  }
+}
+
+.hero{
+  margin-block: 46px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .block_text{
+    text-align: left;
+    width: 450px;
+
+    .title{
+      font-family: "Castoro Titling", serif;
+      font-size: 30px;
+      margin-bottom: 31px;
+    }
+
+    .text {
+      font-family: "Castoro", serif;
+      font-size: 20px;
+      text-align: justify;
+    }
+  }
+
+  .image {
+    display: block;
+    width: 350px;
+    aspect-ratio: 1;
+  }
+
+  @media (max-width: 900px) {
+    margin-block: 0;
+    margin-bottom: 46px;
+
+    .block_text{
+      margin-bottom: 30px;
+
+      .title{
+        font-size: 25px;
+        margin-bottom: 25px;
+      }
+
+      .text {
+        font-size: 18px;
+      }
+    }
+
+    .image {
+      width: 300px;
+    }
+  }
+
+}
+
+.chapter {
+  margin-block: 40px;
+  position: relative;
+
+  .text{
+    display: inline;
+    font-family: "Pirata One", serif;
+    font-size: 48px;
+    background-color: var(--main-color-page);
+    position: relative;
+    z-index: 5;
+  }
+
+  .line{
+    width: 100%;
+    height: 2px;
+    background-color: var(--main-color);
+    position: absolute;
+    bottom: 46%;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .text{
+      font-size: 35px;
+    }
+  }
+}
+
+.skills{
+
+  .content_block{
+    display: flex;
+
+    .list {
+      padding-inline: 50px;
+      width: 100%;
+
+      .item{
+        margin-bottom: 20px;
+
+        .image{
+          width: 100px;
+          aspect-ratio: 1;
+          margin-bottom: 10px;
+        }
+
+        .text{
+          font-family: "Castoro Titling", serif;
+          font-size: 22px;
+        }
+      }
+    }
+
+    .list:nth-child(2){
+      border-inline: 2px solid var(--main-color);
+    }
+  }
+
+  @media (max-width: 650px) {
+
+    .content_block{
+      display: block;
+      justify-content: center;
+
+      .list {
+        padding: 0;
+
+        .item{
+
+          .image{
+            width: 130px;
+          }
+
+          .text{
+            font-size: 25px;
+          }
+        }
+      }
+
+      .list:nth-child(2){
+        border-right: 0;
+        border-left: 0;
+      }
+    }
+  }
+
+}
+
+.project {
+
+  .list {
+
+    .item{
+      display: flex;
+      gap: 50px 100px;
+      justify-content: center;
+
+      .image{
+        display: block;
+        width: 350px;
+        aspect-ratio: 1;
+      }
+
+      .text_block{
+        width: 360px;
+        text-align: left;
+
+        .title {
+          font-family: "Castoro Titling", serif;
+          font-size: 30px;
+          margin-block: 30px 20px;
+        }
+
+        .text{
+          font-family: "Castoro", serif;
+          font-size: 20px;
+          line-height: 30px;
+          text-align: justify;
+
+          a{
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  .item:nth-child(even){
+    flex-direction: row-reverse;
+  }
+
+  .item:not(:last-child){
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 900px) {
+    .list {
+
+      .item{
+        display: flex;
+        flex-wrap: wrap;
+
+        .image{
+          width: 300px;
+        }
+
+        .text_block{
+          width: 300px;
+
+          .title {
+            font-size: 25px;
+          }
+
+          .text{
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.education{
+
+  .list{
+    display: flex;
+    justify-content: space-around;
+
+    .item{
+      width: 350px;
+
+      .image{
+        width: inherit;
+        height: 350px;
+        justify-self: center;
+      }
+
+      .text{
+        text-align: left;
+        font-family: "Castoro Titling", serif;
+        font-size: 20px;
+
+        .years{
+          line-height: 50px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+
+    .list{
+      flex-wrap: wrap;
+
+      .item{
+        width: 300px;
+
+        .image{
+          width: inherit;
+          height: 300px;
+        }
+
+        .text{
+          font-size: 18px;
+
+          .years{
+            line-height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.contacts{
+
+  .title{
+    font-family: "Castoro Titling", serif;
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+
+  .ad{
+    font-family: "Castoro", serif;
+    font-size: 25px;
+    margin-bottom: 40px;
+  }
+
+  .list{
+    display: flex;
+    justify-content: space-around;
+
+    .item{
+
+      .link{
+
+        .image{
+          width: 40px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    .title{
+      font-size: 30px;
+    }
+
+    .ad{
+      font-size: 18px;
+    }
+  }
+}
+
+.footer{
+  margin-top: 70px;
+  padding: 20px 0;
+  border-top: 3px solid var(--main-color);
+
+  .image{
+    width: 50px;
+  }
+
+  @media (max-width: 550px) {
+    margin-top: 40px;
+
+    .image{
+      width: 30px;
+    }
+  }
+}
+
